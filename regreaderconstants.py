@@ -1,3 +1,5 @@
+import re
+
 club_abbreviations = {
     "A": "Authors",
     "Ad": "Alpha Delta Phi",
@@ -103,3 +105,16 @@ club_abbreviations = {
     "Y": "Yale Graduate",
     "Zp": "Zeta Psi"
 }
+
+multiTokenLastName = [
+    "du",
+    "de",
+    "van",
+    "o'"
+]
+
+def validateClubName(prediction):
+    return re.sub(r'[^A-z]+', '', prediction) in club_abbreviations
+
+def isMultiTokenLastName(token):
+    return token in multiTokenLastName
